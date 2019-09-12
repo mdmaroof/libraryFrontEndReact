@@ -160,6 +160,12 @@ nav ul li {
   font-weight: 300;
 }
 
+.homePageForm span{
+  font-size: 10px;
+  color: #ff0000;
+  margin-left: 20px;
+}
+
 .homePageForm .inputType{
   align-items: center;
     background-color: hsl(0,0%,100%);
@@ -183,5 +189,80 @@ nav ul li {
 .homePageForm .css-2b097c-container{
   margin: 15px 0px;
 }
+
+.buttonHomePage{
+  border: 2px solid ;
+  margin-top: 25px;
+	padding: 8px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  border: 2px solid #01a1fe;
+	color: #01a1fe;
+}
+.buttonHomePage:hover{
+background: #01a1fe;
+color:#fff;
+}
+.table{
+  overflow-x: auto;
+}
+.table table{
+  width: 100%;
+  border:1px solid #ddd
+}
+.table table thead {
+  background:  #01a1fe;
+  color: #fff;
+}
+.table table thead th{
+text-align: left;
+padding: 10px;
+border:1px solid #ddd
+}
+
+.table table tbody td{
+  text-align: left;
+  padding:10px;
+  border:1px solid #ddd
+}
+
+.btn{
+  border: 2px solid ;
+	padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  border: 2px solid #01a1fe;
+	color: #01a1fe;
+}
+
+
+.content .buttonNew {
+	border: 2px solid #01a1fe;
+	color: #01a1fe;
+	padding: 10px 15px;
+  top: 25px;
+  font-size: 16px;
+  cursor: pointer;
+	float: right;
+	position: relative;
+}
+
+.content .buttonNew:hover {
+	background: #01a1fe;
+	color: #fff;
+}
+
+.profileBox{
+  margin-top: 20px;
+}
+.profileBox .heading{ 
+  font-size: 20px;
+  padding: 10px 0px;
+}
+.profileBox span{
+  font-size: 16px;
+  font-weight: 300;
+}
+
 
 

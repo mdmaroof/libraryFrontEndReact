@@ -17,8 +17,8 @@ class Header extends Component {
                        <ul>
                            <li><Link to="/">Home</Link></li>
                            <li><Link to="/classRecords">Books</Link></li>
-                           <li>Student</li>
-                           <li>Records</li>
+                           <li><Link to="/students">Students</Link></li>
+                           <li><Link to="/bookReturnRecord">Book Returned</Link></li>
                        </ul>
                     </Col>
                 </Row>

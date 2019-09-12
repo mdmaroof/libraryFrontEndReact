@@ -1,33 +1,34 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'react-flexbox-grid';
-import {CALL_CLASSES,ADD_BOOK} from './../../constant/axios'
+import {ADD_BOOK} from './../../constant/axios'
 import Modal from './../../constant/modal'
 import {Link} from 'react-router-dom'
 import Select from 'react-select';
 import { toast } from 'react-toastify';
 
+import {inject,observer} from 'mobx-react';
+
+@inject('bookStore','classesStore')
+@observer
 class AllBooksRecord extends Component {
     state = {
         classesData:[],
         loading:'true',
-        showModal:false,
+        showModal:false, 
         classesOption:[],
         selectedOption: null,
         bookName:''
     }
-    componentDidMount = () => {
-        CALL_CLASSES()
-        .then((res)=>{
-            this.setState({
-                classesData:res.data.result,
-                classesOption: res.data.result.map(x => {
-                    return (
-                        { value: x.class_name, label: x.class_name }
-                    )
-                }),
-                loading:'false'
-            })
-        })     
+    componentDidMount = async() => {
+        if(this.state.classesData.length === 0){
+            await this.props.classesStore.classesData();
+            await this.props.bookStore.allBooksCall();
+        }
+        this.setState({
+            // classesData:await this.props.classesStore.classes,
+            classesOption:await this.props.classesStore.classesOption,
+            loading:'false'
+        })  
     }
 
     handleChange = selectedOption => {
@@ -105,13 +106,43 @@ class AllBooksRecord extends Component {
                                 <button className="addButton" onClick={this.addBookToRecord}>Add Book </button>
                             </Modal>
 
-                            {this.state.classesData.map(x => {
+
+                            <div className="table">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Book Name</th>
+                                            <th>Class Book Related To</th>
+                                            <th>Total Books In Record</th>
+                                            <th>Total Books Available</th>
+                                            <th>Total Book Taken</th>
+                                            <th>View Student Taken Books</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                       {this.props.bookStore.allBooks.map((x,i)=>{
+                                           return(
+                                               <tr key={i}>
+                                                  <td>{x.book_name}</td> 
+                                                  <td>{x.class_book_related}</td> 
+                                                  <td>{x.totalBook}</td> 
+                                                  <td>{x.booksAvailable}</td> 
+                                                  <td>{x.booksTaken}</td>
+                                                  <td><Link to={`/books/${x.id}`} className="btn" onClick={()=>this.showModal(x.books)}>View Student Taken Books</Link> </td>
+                                               </tr>
+                                           )
+                                       })}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            {/* {this.state.classesData.map(x => {
                                 return (
                                     <h4 key={x.class_id}>
                                         <Link to={`books/${x.class_name}`}>{x.class_name}</Link>
                                     </h4>
                                 )
-                            })}
+                            })} */}
                         </Col>
                     }
                 </Row>

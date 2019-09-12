@@ -9,6 +9,8 @@ import 'react-toastify/dist/ReactToastify.css';
 // stores
 
 import ClassesStore from './stores/classesStore';
+import BookStore from './stores/bookStore';
+import StudentStore from './stores/studentStore';
 
 toast.configure({
   autoClose: 4000,
@@ -22,7 +24,7 @@ toast.configure({
 function App() {
   return (
     <Router>
-      <Provider classesStore={ClassesStore}>
+      <Provider classesStore={ClassesStore} bookStore={BookStore} studentStore={StudentStore}>
         <MainApplication />
       </Provider>
     </Router>
