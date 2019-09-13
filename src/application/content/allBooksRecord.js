@@ -59,7 +59,8 @@ class AllBooksRecord extends Component {
         ADD_BOOK(payload, headers)
             .then((response) => {
                 if (response.status === 200) {
-                    toast.success("Succefully Added The Book !", { closeButton: false })
+                    toast.success("Succefully Added The Book !", { closeButton: false });
+                    this.props.bookStore.allBooksCall();
                 }
                 else {
                     toast.error("Unable To Add,Something Went Wrong !", { closeButton: false })
